@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export function HeaderComponent() {
   return (
-    <div className='absolute top-0 left-0 w-screen h-9 bg-red-200 '>
+    <div>
       <div>This is Header Component</div>
       <Link to='/login'> Login </Link>
       <Link to='/'> Home </Link>
