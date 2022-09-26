@@ -10,7 +10,7 @@ interface IMenuItem {
 const MENU_ITEMS: IMenuItem[] = [
   {
     icon: <Icons.HiOutlineMusicNote size={24} />,
-    label: 'My music',
+    label: 'My music2',
   },
   {
     icon: <Icons.HiOutlineSparkles size={24} />,
