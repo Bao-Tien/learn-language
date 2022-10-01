@@ -60,7 +60,7 @@ export function MainLayout_SideBar() {
             <Link to={item.path}>
               <div
                 className={classNames(
-                  'hover:text-system-highlight flex justify-center py-4 lg:justify-start lg:px-6 lg:py-2  lg:text-xs lg:border-l-[0.2rem]',
+                  'hover:text-system-highlight flex justify-center lg:items-center py-4 lg:justify-start lg:px-6 lg:py-2  lg:text-xs lg:border-l-[0.2rem]',
                   {
                     'text-system-highlight border-system-border border-solid bg-system-sidebar-item':
                       isMatchedRoute,
