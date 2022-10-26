@@ -23,12 +23,17 @@ export function VideoCardComponent(props: IVideoCardComponentProps) {
   return (
     <div className='flex flex-col w-full'>
       <div className='w-full cursor-pointer'>
-        <img src={props.video.thumbnails[0].url} className='rounded-system-default'></img>
+        <img
+          src={props.video.thumbnails[0].url}
+          alt={props.video.title}
+          className='rounded-system-default'
+        ></img>
       </div>
       <div className='flex gap-2 mt-2'>
         <div className='w-10 h-10'>
           <img
             src={props.video.channel.thumbnails[0].url}
+            alt={props.video.channel.name}
             className='rounded-system-circle w-10 h-10'
           ></img>
         </div>

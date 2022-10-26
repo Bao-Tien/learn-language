@@ -10,13 +10,14 @@ interface IMainLayoutProps {
 const SDiv_Container = styled.div`
   background-size: 1920px auto;
   background-repeat: repeat;
+  margin-top: 0rem;
 `
 
 export function MainLayout(props: IMainLayoutProps) {
   const headerClassNames = 'left-[4.5rem] w-[calc(100vw-4.5rem)]'
   const headerLgClassNames = 'lg:left-[15rem] lg:w-[calc(100vw-15rem)]'
   return (
-    <SDiv_Container className='bg-system-theme-img  bg-fixed'>
+    <SDiv_Container className='bg-system-theme-img bg-fixed h-screen'>
       {/* Header */}
       <div
         className={classNames(

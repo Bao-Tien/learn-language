@@ -15,8 +15,8 @@ export function VideosScreen() {
 
   return (
     <div className='grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full p-4'>
-      {res.data?.result.map((video) => {
-        return <VideoCardComponent video={video} />
+      {res.data?.result.map((video, index) => {
+        return <VideoCardComponent video={video} key={index} />
       })}
     </div>
   )
