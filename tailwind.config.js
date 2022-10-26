@@ -20,6 +20,10 @@ module.exports = {
         'system-sidebar-lg': 'hsla(0,0%,100%,0.3)',
         'system-sidebar': '#fbd3d2',
       },
+      borderRadius: {
+        'system-default': '0.5rem',
+        'system-circle': '50%',
+      },
     },
   },
   plugins: [],

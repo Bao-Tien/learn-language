@@ -14,9 +14,9 @@ const SDiv_Container = styled.div`
 
 export function MainLayout(props: IMainLayoutProps) {
   const headerClassNames = 'left-[4.5rem] w-[calc(100vw-4.5rem)]'
-  const headerLgClassNames = 'lg:left-[14rem] lg:w-[calc(100vw-14rem)]'
+  const headerLgClassNames = 'lg:left-[15rem] lg:w-[calc(100vw-15rem)]'
   return (
-    <SDiv_Container className='bg-system-theme-img w-screen h-screen'>
+    <SDiv_Container className='bg-system-theme-img  bg-fixed'>
       {/* Header */}
       <div
         className={classNames(
@@ -29,12 +29,12 @@ export function MainLayout(props: IMainLayoutProps) {
       </div>
 
       {/* Sidebar */}
-      <div className='fixed top-0 left-0 w-[4.5rem] lg:w-[14rem] h-screen bg-system-sidebar lg:bg-system-sidebar-lg'>
+      <div className='fixed top-0 left-0 w-[4.5rem] lg:w-[15rem] h-screen bg-system-sidebar lg:bg-system-sidebar-lg'>
         <MainLayout_SideBar />
       </div>
 
       {/* Main content */}
-      <div className='pt-16 pl-[4.5rem] lg:pl-[14rem] text-system-highlight'>{props.children}</div>
+      <div className='pt-16 pl-[4.5rem] lg:pl-[15rem] text-system-base'>{props.children}</div>
     </SDiv_Container>
   )
 }
