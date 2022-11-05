@@ -54,7 +54,6 @@ export function MainLayout_SideBar() {
     <div className='flex flex-col h-screen pt-20'>
       {MENU_ITEMS.map((item, index) => {
         const isMatchedRoute = matchRoutes([{ path: `${item.path}` }], location.pathname)
-        console.log(item.path, isMatchedRoute)
         return (
           <div key={index}>
             <Link to={item.path}>

@@ -5,9 +5,6 @@ interface IVideoCardComponentProps {
   video: IYoutubeVideo
 }
 
-// const SDiv_Image_Container = styled.div`
-//   background-image: url(${(props) => props.imageUrl});
-// `
 const SDiv_Title_Container = styled.div`
   overflow: hidden;
   display: -webkit-box;

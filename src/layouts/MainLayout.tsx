@@ -2,6 +2,7 @@ import { HeaderComponent } from '~components/Header'
 import classNames from 'classnames'
 import styled from 'styled-components'
 import { MainLayout_SideBar } from './MainLayout_SideBar'
+import React from 'react'
 
 interface IMainLayoutProps {
   children?: React.ReactNode
@@ -19,13 +20,7 @@ export function MainLayout(props: IMainLayoutProps) {
   return (
     <SDiv_Container className='bg-system-theme-img bg-fixed h-screen'>
       {/* Header */}
-      <div
-        className={classNames(
-          'fixed top-0 h-16 bg-green-200',
-          headerClassNames,
-          headerLgClassNames,
-        )}
-      >
+      <div className={classNames('fixed top-0 h-16', headerClassNames, headerLgClassNames)}>
         <HeaderComponent />
       </div>
 

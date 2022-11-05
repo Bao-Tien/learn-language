@@ -6,6 +6,7 @@ module.exports = {
       textColor: {
         'system-highlight': '#ea7aa0',
         'system-base': '#32323d',
+        'system-placeholder': '#757575',
       },
       backgroundImage: {
         'system-theme-img':
@@ -19,10 +20,15 @@ module.exports = {
         'system-sidebar-item': 'rgba(0,0,0,0.05)',
         'system-sidebar-lg': 'hsla(0,0%,100%,0.3)',
         'system-sidebar': '#fbd3d2',
+        'system-input': 'rgba(0,0,0,0.05)',
       },
       borderRadius: {
         'system-default': '0.5rem',
         'system-circle': '50%',
+        'system-input': '1.5rem',
+      },
+      padding: {
+        'system-section': '0 3.5rem',
       },
     },
   },
