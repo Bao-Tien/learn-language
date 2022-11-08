@@ -6,6 +6,7 @@ import { MusicScreen } from './MusicScreen'
 import { TrendingScreen } from './TrendingScreen'
 import { VideosScreen } from './VideosScreen'
 import { GlobalScreen } from './GlobalScreen'
+import { VideoItemScreen } from './VideoItemScreen'
 
 interface IAppRoute {
   path: string
@@ -39,6 +40,7 @@ const routes: IAppRoute[] = [
   { path: '/trending', screen: <TrendingScreen />, layout: MainLayout },
   { path: '/videos', screen: <VideosScreen />, layout: MainLayout },
   { path: '/global', screen: <GlobalScreen />, layout: MainLayout },
+  { path: '/watch', screen: <VideoItemScreen /> },
 ]
 
 export function AppRoutes() {

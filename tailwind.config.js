@@ -4,9 +4,10 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        'system-highlight': '#ea7aa0',
+        'system-highlight': 'var(--text-system-highlight)',
         'system-base': '#32323d',
         'system-placeholder': '#757575',
+        'system-caption': '#ffed00',
       },
       backgroundImage: {
         'system-theme-img':
@@ -20,7 +21,8 @@ module.exports = {
         'system-sidebar-item': 'rgba(0,0,0,0.05)',
         'system-sidebar-lg': 'hsla(0,0%,100%,0.3)',
         'system-sidebar': '#fbd3d2',
-        'system-input': 'rgba(0,0,0,0.05)',
+        'system-header': '#f1ddd8',
+        'system-videoItem': '#373131',
       },
       borderRadius: {
         'system-default': '0.5rem',

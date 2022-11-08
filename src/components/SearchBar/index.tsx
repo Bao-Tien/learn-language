@@ -2,7 +2,7 @@ import * as IconsHi from 'react-icons/hi'
 import * as IconsAi from 'react-icons/ai'
 import styled from 'styled-components'
 import React from 'react'
-import { SearchInputContext } from '~root/contexts/SearchInputContext'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const SSpan_IconContainer = styled.span`
   svg path {
@@ -18,14 +18,17 @@ interface SearchKeyFormElement extends HTMLFormElement {
 }
 
 export function SearchBarComponent() {
-  const [searchKey, setSearchKey] = React.useState('')
-
-  //context
-  const { updateSearchInput } = React.useContext(SearchInputContext)
+  const [searchParams] = useSearchParams()
+  const queryFromUrl = searchParams.get('q')
+  const [txtSearchValue, setTxtSearchValue] = React.useState(queryFromUrl ?? '')
+  const navigate = useNavigate()
 
   const handleFormSubmit = (event: React.FormEvent<SearchKeyFormElement>) => {
-    event.preventDefault() // 👈️ prevent page refresh
-    updateSearchInput(event.currentTarget.elements.searchKeyInput.value)
+    event.preventDefault() // prevent default behaviour (page refresh)
+    navigate({
+      pathname: '/videos',
+      search: 'q=' + txtSearchValue,
+    })
   }
 
   return (
@@ -40,12 +43,10 @@ export function SearchBarComponent() {
           <div className='absolute left-11 right-6 '>
             <input
               placeholder='Search videos...'
-              className='w-[95%] text-sm bg-inherit placeholder:text-system-placeholder focus:border-0'
+              className='w-[95%] text-sm bg-inherit placeholder:text-system-placeholder focus:outline-none'
               type='text'
-              id='searchKeyInput'
-              name='searchKeyInput'
-              onChange={(event) => setSearchKey(event.target.value)}
-              value={searchKey}
+              onChange={(event) => setTxtSearchValue(event.target.value)}
+              value={txtSearchValue}
             />
           </div>
           <SSpan_IconContainer className='absolute right-3 text-system-placeholder cursor-pointer'>

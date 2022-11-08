@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { IYoutubeVideo } from '~interfaces/GetVideosResponse.interface'
 
@@ -17,6 +18,15 @@ const SDiv_Title_Container = styled.div`
 `
 
 export function VideoCardComponent(props: IVideoCardComponentProps) {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate({
+      pathname: '/watch',
+      search: `v=${props.video.id}&ab_channel=${props.video.channel.name}`,
+    })
+  }
+
   return (
     <div className='flex flex-col w-full'>
       <div className='w-full cursor-pointer'>
@@ -32,10 +42,11 @@ export function VideoCardComponent(props: IVideoCardComponentProps) {
             src={props.video.channel.thumbnails[0].url}
             alt={props.video.channel.name}
             className='rounded-system-circle w-10 h-10'
+            onClick={handleClick}
           ></img>
         </div>
         <div className='flex-1'>
-          <SDiv_Title_Container>{props.video.title}</SDiv_Title_Container>
+          <SDiv_Title_Container onClick={handleClick}>{props.video.title}</SDiv_Title_Container>
           <div className='text-xs cursor-pointer mt-1'>{props.video.channel.name}</div>
           <div className='flex gap-1 text-xs'>
             <span>{props.video.publishedTime}</span>

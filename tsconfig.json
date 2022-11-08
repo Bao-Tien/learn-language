@@ -37,6 +37,13 @@
       "~service/*": ["./src/service/*"]
     }
   },
-  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx", "src/custom.d.ts", "**/*.d.ts"],
+  "include": [
+    "vite.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/custom.d.ts",
+    "**/*.d.ts",
+    "src/components/CaptionCard"
+  ],
   "exclude": ["node_modules"]
 }
