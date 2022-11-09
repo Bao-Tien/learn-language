@@ -2,9 +2,15 @@ import { useFetch } from '~root/hooks/useFetch'
 import { IGetVideoCaptionResponse } from '~interfaces/GetVideoCaptionResponse.interface'
 import React from 'react'
 import RoundedLoading from '../RoundedLoading/RoundedLoading'
+import { IVideoPlayerState } from '~root/screens/VideoItemScreen'
+import classNames from 'classnames'
+import YouTubePlayer from 'react-player/youtube'
 
 interface ICaptionCardComponentProps {
   videoUrl?: string | ''
+  videoState: IVideoPlayerState
+  setVideoState: React.Dispatch<React.SetStateAction<IVideoPlayerState>>
+  videoPlayerRefCurrent: YouTubePlayer | null
 }
 
 export function CaptionCardComponent(props: ICaptionCardComponentProps) {
@@ -21,14 +27,29 @@ export function CaptionCardComponent(props: ICaptionCardComponentProps) {
     }
   }, [run, props.videoUrl])
 
-  console.log(res)
+  // console.log(props.videoState)
+  // console.log(res.data?.segments)
 
   return (
-    <div className='max-h-screen overflow-auto flex flex-col gap-2'>
+    <div className='max-h-screen overflow-auto flex flex-col gap-10'>
       {res.error && <div>{res.error}</div>}
       {res.isLoading && <RoundedLoading expandToFullParent />}
       {res.data?.segments.map((segment, index) => (
-        <div className='rounded-sm text-4xl text-system-caption' key={index}>
+        <div
+          className={classNames(
+            'rounded-sm font-bold text-5xl text-system-caption mr-10 cursor-pointer',
+            {
+              'text-yellow-300':
+                Number(segment.startMs) <= props.videoState.playedSeconds * 1000 &&
+                props.videoState.playedSeconds * 1000 < Number(segment.endMs),
+            },
+          )}
+          key={index}
+          onClick={() => {
+            props.videoPlayerRefCurrent?.seekTo(Number(segment.startMs) / 1000)
+            props.setVideoState((prev) => ({ ...prev, isPlaying: true }))
+          }}
+        >
           {segment.text}
         </div>
       ))}

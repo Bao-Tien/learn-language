@@ -31,6 +31,10 @@ export function SearchBarComponent() {
     })
   }
 
+  const handleDeleteBtnClick = () => {
+    setTxtSearchValue('')
+  }
+
   return (
     <div className='grow max-w-[50%]'>
       <form onSubmit={handleFormSubmit}>
@@ -50,7 +54,7 @@ export function SearchBarComponent() {
             />
           </div>
           <SSpan_IconContainer className='absolute right-3 text-system-placeholder cursor-pointer'>
-            <IconsAi.AiOutlineClose size={18} />
+            <IconsAi.AiOutlineClose size={18} onClick={handleDeleteBtnClick} />
           </SSpan_IconContainer>
         </div>
       </form>

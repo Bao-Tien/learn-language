@@ -7,7 +7,9 @@ module.exports = {
         'system-highlight': 'var(--text-system-highlight)',
         'system-base': '#32323d',
         'system-placeholder': '#757575',
-        'system-caption': '#ffed00',
+        'system-caption-highlight': '#ffed00',
+        'system-caption-through': 'hsla(0,0%,100%,0.5)',
+        'system-caption': '#ffffff',
       },
       backgroundImage: {
         'system-theme-img':

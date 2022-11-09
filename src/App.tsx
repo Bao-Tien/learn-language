@@ -4,13 +4,13 @@ import { AppRoutes } from './screens/routes'
 
 function App() {
   return (
-    <>
+    <div className='fixed'>
       <BrowserRouter>
         <SearchInputContextProvider>
           <AppRoutes />
         </SearchInputContextProvider>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 
