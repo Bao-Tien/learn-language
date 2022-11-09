@@ -18,7 +18,7 @@ module.exports = {
         'system-border': '#CC3373',
       },
       backgroundColor: {
-        'system-sidebar-item': 'rgba(0,0,0,0.05)',
+        'system-shaded': 'rgba(0,0,0,0.05)',
         'system-sidebar-lg': 'hsla(0,0%,100%,0.3)',
         'system-sidebar': '#fbd3d2',
         'system-header': '#f1ddd8',

@@ -34,7 +34,7 @@ export function SearchBarComponent() {
   return (
     <div className='grow max-w-[50%]'>
       <form onSubmit={handleFormSubmit}>
-        <div className='relative flex items-center rounded-system-input bg-system-input h-10'>
+        <div className='relative flex items-center rounded-system-input bg-system-shaded h-10'>
           <button className='absolute left-3'>
             <SSpan_IconContainer className='text-system-placeholder cursor-pointer'>
               <IconsHi.HiOutlineSearch size={24} />

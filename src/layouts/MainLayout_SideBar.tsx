@@ -61,7 +61,7 @@ export function MainLayout_SideBar() {
                 className={classNames(
                   'hover:text-system-highlight flex justify-center lg:items-center py-4 lg:justify-start lg:px-6 lg:py-2  lg:text-xs lg:border-l-[0.2rem]',
                   {
-                    'text-system-highlight border-system-border border-solid bg-system-sidebar-item':
+                    'text-system-highlight border-system-border border-solid bg-system-shaded':
                       isMatchedRoute,
                   },
                   {
