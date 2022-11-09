@@ -42,7 +42,7 @@ export function VideoCardComponent(props: IVideoCardComponentProps) {
             src={props.video.channel.thumbnails[0].url}
             alt={props.video.channel.name}
             className='rounded-system-circle w-10 h-10'
-            onClick={handleClick}
+            //onClick={handleClick}
           ></img>
         </div>
         <div className='flex-1'>

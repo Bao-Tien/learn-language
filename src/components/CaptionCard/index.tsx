@@ -27,8 +27,10 @@ export function CaptionCardComponent(props: ICaptionCardComponentProps) {
     <div className='max-h-screen overflow-auto flex flex-col gap-2'>
       {res.error && <div>{res.error}</div>}
       {res.isLoading && <RoundedLoading expandToFullParent />}
-      {res.data?.segments.map((segment) => (
-        <div className='rounded-sm text-4xl text-system-caption'>{segment.text}</div>
+      {res.data?.segments.map((segment, index) => (
+        <div className='rounded-sm text-4xl text-system-caption' key={index}>
+          {segment.text}
+        </div>
       ))}
     </div>
   )

@@ -14,7 +14,7 @@ const SDiv_VideoContainer = styled.div`
 `
 
 export const VideoItemScreen = () => {
-  const [isPlaying, setIsPlaying] = React.useState(false)
+  //const [isPlaying, setIsPlaying] = React.useState(false)
   const [searchParams] = useSearchParams()
   const videoId = searchParams.get('v') ?? ''
   const [res, run] = useFetch<IGetVideoInfoResponse>()
@@ -35,7 +35,7 @@ export const VideoItemScreen = () => {
     <div className='grid grid-cols-3 bg-system-videoItem py-10'>
       <div>
         <SDiv_VideoContainer>
-          <ReactPlayer playing={isPlaying} url={`https://www.youtube.com/watch?v=${videoId}`} />
+          <ReactPlayer url={`https://www.youtube.com/watch?v=${videoId}`} />
         </SDiv_VideoContainer>
         <div className='text-white'>
           {res.error && <div>{res.error}</div>}
