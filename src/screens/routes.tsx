@@ -16,24 +16,6 @@ interface IAppRoute {
 }
 
 const routes: IAppRoute[] = [
-  // { path: '/login', screen: <LoginScreen />, layout: MainLayout },
-  // { path: '/', screen: <HomeScreen />, layout: MainLayout },
-  // { path: '/news', screen: <NewsScreen />, layout: MainLayout },
-  // { path: '/listening', screen: <ListeningScreen />, layout: MainLayout },
-  // { path: '/game', screen: <GameScreen />, layout: MainLayout },
-  // { path: '/dictionary', screen: <DictionaryScreen />, layout: MainLayout },
-  // {
-  //   path: '/study-document',
-  //   screen: <StudyDocumentScreen />,
-  //   layout: MainLayout,
-  //   requiredLogin: true,
-  // },
-  // {
-  //   path: '/academic-performence',
-  //   screen: <AcademicPerformanceScreen />,
-  //   layout: MainLayout,
-  //   requiredLogin: true,
-  // },
   { path: '/music', screen: <MusicScreen />, layout: MainLayout },
   { path: '/explore', screen: <ExploreScreen />, layout: MainLayout },
   { path: '/charts', screen: <ChartsScreen />, layout: MainLayout },
