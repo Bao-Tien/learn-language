@@ -10,21 +10,22 @@ module.exports = {
         'system-caption-highlight': '#ffed00',
         'system-caption-through': 'hsla(0,0%,100%,0.5)',
         'system-caption': '#ffffff',
+        'system-disable': '#d9dde8',
+        'system-disable-light': '#d9dde8',
       },
       backgroundImage: {
         'system-theme-img':
           'url(https://doan2-20220925-dev-imagebucket-jivszewnyq8u.s3.ap-southeast-1.amazonaws.com/lisa.jpeg)',
       },
-      backgroundColor: {},
-      borderColor: {
-        'system-border': '#CC3373',
-      },
       backgroundColor: {
         'system-shaded': 'rgba(0,0,0,0.05)',
+        'system-shaded-alpha-40': 'rgba(0,0,0,0.4)',
         'system-sidebar-lg': 'hsla(0,0%,100%,0.3)',
         'system-sidebar': '#fbd3d2',
         'system-header': '#f1ddd8',
         'system-videoItem': '#373131',
+        'system-card': 'var(--card-system-background)',
+        'system-highlight': 'var(--text-system-highlight)',
       },
       borderRadius: {
         'system-default': '0.5rem',
@@ -33,6 +34,13 @@ module.exports = {
       },
       padding: {
         'system-section': '0 3.5rem',
+      },
+      boxShadow: {
+        'system-card': '0 0.125rem 0.25rem rgb(0 0 0 / 8%)',
+      },
+      borderColor: {
+        'system-bottom': 'transparent transparent var(--text-system-highlight)',
+        'system-highlight': '#CC3373',
       },
     },
   },

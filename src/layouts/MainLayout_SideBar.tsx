@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import * as Icons from 'react-icons/hi'
-import { Link, matchRoutes, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface IMenuItem {
@@ -33,8 +33,8 @@ const MENU_ITEMS: IMenuItem[] = [
   },
   {
     icon: <Icons.HiOutlineStar size={24} />,
-    label: 'Trending',
-    path: '/trending',
+    label: 'Your Library',
+    path: '/yourLibrary',
   },
   {
     icon: <Icons.HiOutlineFilm size={24} />,
@@ -53,7 +53,8 @@ export function MainLayout_SideBar() {
   return (
     <div className='flex flex-col h-screen pt-20'>
       {MENU_ITEMS.map((item, index) => {
-        const isMatchedRoute = matchRoutes([{ path: `${item.path}` }], location.pathname)
+        // const isMatchedRoute = matchRoutes([{ path: `${item.path}` }], location.pathname)
+        const isMatchedRoute = location.pathname.includes(item.path)
         return (
           <div key={index}>
             <Link to={item.path}>
@@ -61,7 +62,7 @@ export function MainLayout_SideBar() {
                 className={classNames(
                   'hover:text-system-highlight flex justify-center lg:items-center py-4 lg:justify-start lg:px-6 lg:py-2  lg:text-xs lg:border-l-[0.2rem]',
                   {
-                    'text-system-highlight border-system-border border-solid bg-system-shaded':
+                    'text-system-highlight border-system-highlight border-solid bg-system-shaded':
                       isMatchedRoute,
                   },
                   {

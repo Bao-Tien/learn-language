@@ -44,7 +44,7 @@ export function SearchBarComponent() {
               <IconsHi.HiOutlineSearch size={24} />
             </SSpan_IconContainer>
           </button>
-          <div className='absolute left-11 right-6 '>
+          <div className='absolute left-11 right-6 flex items-center'>
             <input
               placeholder='Search videos...'
               className='w-[95%] text-sm bg-inherit placeholder:text-system-placeholder focus:outline-none'

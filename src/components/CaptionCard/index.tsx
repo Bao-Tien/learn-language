@@ -35,7 +35,7 @@ export function CaptionCardComponent(props: ICaptionCardComponentProps) {
         inline: 'center',
       })
     }
-  }, [currentHighlightSentenceRef.current])
+  })
 
   return (
     <>
@@ -46,10 +46,14 @@ export function CaptionCardComponent(props: ICaptionCardComponentProps) {
           const isHighlighted =
             Number(segment.startMs) <= props.videoState.playedSeconds * 1000 &&
             props.videoState.playedSeconds * 1000 < Number(segment.endMs)
+          const isThrough = props.videoState.playedSeconds * 1000 > Number(segment.endMs)
           return (
             <div
               className={classNames(
                 'relative rounded-sm font-bold text-5xl text-system-caption mr-10 cursor-pointer',
+                {
+                  'text-system-caption-through': isThrough,
+                },
                 {
                   'text-yellow-300': isHighlighted,
                 },

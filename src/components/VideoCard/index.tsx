@@ -28,16 +28,13 @@ export function VideoCardComponent(props: IVideoCardComponentProps) {
   }
 
   return (
-    <div className='flex flex-col w-full'>
-      <div className='w-full cursor-pointer'>
-        <img
-          src={props.video.thumbnails[0].url}
-          alt={props.video.title}
-          className='rounded-system-default'
-        ></img>
+    <div className='flex flex-col w-full cursor-pointer' onClick={handleClick}>
+      <div className='relative w-full rounded-system-default overflow-hidden'>
+        <img src={props.video.thumbnails[0].url} alt={props.video.title} className=''></img>
+        <div className='absolute top-0 left-0 w-full h-full hover:bg-system-shaded-alpha-40'></div>
       </div>
       <div className='flex gap-2 mt-2'>
-        <div className='w-10 h-10'>
+        <div className='w-10 h-10 '>
           <img
             src={props.video.channel.thumbnails[0].url}
             alt={props.video.channel.name}
@@ -45,8 +42,8 @@ export function VideoCardComponent(props: IVideoCardComponentProps) {
           ></img>
         </div>
         <div className='flex-1'>
-          <SDiv_Title_Container onClick={handleClick}>{props.video.title}</SDiv_Title_Container>
-          <div className='text-xs cursor-pointer mt-1'>{props.video.channel.name}</div>
+          <SDiv_Title_Container>{props.video.title}</SDiv_Title_Container>
+          <div className='text-xs mt-1'>{props.video.channel.name}</div>
           <div className='flex gap-1 text-xs'>
             <span>{props.video.publishedTime}</span>
             <span>•</span>

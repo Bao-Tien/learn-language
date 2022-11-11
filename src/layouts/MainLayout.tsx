@@ -19,9 +19,9 @@ export function MainLayout(props: IMainLayoutProps) {
   const headerLgClassNames = 'lg:left-[15rem] lg:w-[calc(100vw-15rem)]'
   return (
     <>
-      <SDiv_Container className='bg-system-theme-img bg-fixed'>
+      <SDiv_Container className='bg-system-theme-img bg-fixed min-h-screen w-screen'>
         {/* Header */}
-        <div className={classNames('fixed top-0 h-16', headerClassNames, headerLgClassNames)}>
+        <div className={classNames('fixed top-0 h-16 z-10', headerClassNames, headerLgClassNames)}>
           <HeaderComponent />
         </div>
 
@@ -31,7 +31,7 @@ export function MainLayout(props: IMainLayoutProps) {
         </div>
 
         {/* Main content */}
-        <div className='pt-16 pb-4 pl-[4.5rem] lg:pl-[15rem] text-system-base w-full max-h-screen overflow-auto'>
+        <div className='pt-16 pb-4 pl-[4.5rem] lg:pl-[15rem] text-system-base w-full max-h-screen  overflow-auto'>
           {props.children}
         </div>
       </SDiv_Container>

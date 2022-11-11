@@ -22,14 +22,14 @@ export const VideoItemScreen = () => {
   const videoId = searchParams.get('v') ?? ''
 
   return (
-    <div className='relative h-full w-full'>
+    <div className='relative bg-system-videoItem min-h-screen w-screen'>
       {/* Btn Delete */}
       <div className='absolute top-5 right-10 cursor-pointer hover:text-white'>
         <IconsTi.TiDeleteOutline size={50} onClick={() => navigate(-1)}></IconsTi.TiDeleteOutline>
       </div>
 
       {/* Video */}
-      <div className='grid grid-cols-2 bg-system-videoItem py-10'>
+      <div className='grid grid-cols-2 py-36'>
         <div className='m-10 col-span-1'>
           <VideoListeningComponent
             videoId={videoId}
@@ -40,7 +40,7 @@ export const VideoItemScreen = () => {
         </div>
 
         {/* Caption */}
-        <div className='mt-20 col-span-1'>
+        <div className='h-2/3 overflow-hidden col-span-1'>
           <CaptionCardComponent
             videoState={videoState}
             setVideoState={setVideoState}
