@@ -41,6 +41,7 @@ module.exports = {
       borderColor: {
         'system-bottom': 'transparent transparent var(--text-system-highlight)',
         'system-highlight': '#CC3373',
+        'system-card': '#f6f7fb',
       },
     },
   },

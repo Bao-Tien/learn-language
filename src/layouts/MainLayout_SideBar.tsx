@@ -34,7 +34,7 @@ const MENU_ITEMS: IMenuItem[] = [
   {
     icon: <Icons.HiOutlineStar size={24} />,
     label: 'Your Library',
-    path: '/yourLibrary',
+    path: '/your-library',
   },
   {
     icon: <Icons.HiOutlineFilm size={24} />,

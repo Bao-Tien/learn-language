@@ -7,6 +7,7 @@ import { YourLibraryScreen } from './YourLibraryScreen'
 import { VideosScreen } from './VideosScreen'
 import { GlobalScreen } from './GlobalScreen'
 import { VideoItemScreen } from './VideoItemScreen'
+import { FolderDetails } from './FolderDetails'
 import { SetsScreen } from './SetsScreen'
 
 interface IAppRoute {
@@ -20,11 +21,11 @@ const routes: IAppRoute[] = [
   { path: '/music', screen: <MusicScreen />, layout: MainLayout },
   { path: '/explore', screen: <ExploreScreen />, layout: MainLayout },
   { path: '/charts', screen: <ChartsScreen />, layout: MainLayout },
-  { path: '/yourLibrary', screen: <YourLibraryScreen />, layout: MainLayout },
+  { path: '/your-library', screen: <YourLibraryScreen />, layout: MainLayout },
   { path: '/videos', screen: <VideosScreen />, layout: MainLayout },
   { path: '/global', screen: <GlobalScreen />, layout: MainLayout },
   { path: '/watch', screen: <VideoItemScreen /> },
-  { path: '/yourLibrary/:id', screen: <SetsScreen />, layout: MainLayout },
+  { path: '/your-library/:id', screen: <FolderDetails />, layout: MainLayout },
 ]
 
 export function AppRoutes() {

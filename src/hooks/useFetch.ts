@@ -6,7 +6,12 @@ type TRequestMethod = 'GET' | 'POST' | 'PUT'
 
 type TUseFetchReturn<T> = [
   { data?: T; isLoading: boolean; error: string },
-  (params: { url: string; method: TRequestMethod; body: object }) => void,
+  (params: {
+    url: string
+    method: TRequestMethod
+    body?: object
+    callBackOnSuccess?: (data: T) => any
+  }) => void,
 ]
 
 export function useFetch<ResponseType = any>(): TUseFetchReturn<ResponseType> {
@@ -15,7 +20,12 @@ export function useFetch<ResponseType = any>(): TUseFetchReturn<ResponseType> {
   const [error, setError] = React.useState('')
 
   const run = React.useCallback(
-    (params: { url: string; method: TRequestMethod; body: object }) => {
+    (params: {
+      url: string
+      method: TRequestMethod
+      body?: object
+      callBackOnSuccess?: (data: ResponseType) => any
+    }) => {
       setIsLoading(true)
       fetch(params.url, {
         method: params.method,
@@ -28,6 +38,9 @@ export function useFetch<ResponseType = any>(): TUseFetchReturn<ResponseType> {
         .then((res) => res.json())
         .then((res) => {
           setData(res)
+          if (typeof params.callBackOnSuccess === 'function') {
+            params.callBackOnSuccess(res)
+          }
         })
         .catch((err) => {
           setError(err)
