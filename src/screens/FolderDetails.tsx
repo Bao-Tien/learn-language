@@ -4,9 +4,11 @@ import * as IconsAi from 'react-icons/ai'
 import { IFolder } from './YourLibraryScreen'
 import React from 'react'
 import { useFetch } from '~hooks/useFetch'
-import { WordsComponent } from '~root/components/Words'
+import { WordComponent } from '~root/components/Word'
 import RoundedLoading from '~root/components/RoundedLoading/RoundedLoading'
-import { FormDialogComponent } from '~root/components/FormDialog'
+import { ButtonComponent } from '~root/components/Button'
+import { FormDialogOneTextFieldComponent } from '~root/components/FormDialogOneTextField'
+import { FormDialogTwoTextFieldComponent } from '~root/components/FormDialogTwoTextField'
 
 interface IGetFolderDetailsResponse {
   data: IFolder
@@ -15,7 +17,10 @@ interface IGetFolderDetailsResponse {
 export function FolderDetails() {
   const { id } = useParams()
   const numberId = Number(id)
-  const [open, setOpen] = React.useState(false)
+  const [openEditFolderForm, setOpenEditFolderForm] = React.useState(false)
+  const [openCreateWordForm, setOpenCreateWordForm] = React.useState(false)
+  const [textFieldValueWordFront, setTextFieldValueWordFront] = React.useState('')
+  const [textFieldValueWordBack, setTextFieldValueWordBack] = React.useState('')
 
   const [resGetFolderDetails, runGetFolderDetails] = useFetch<IGetFolderDetailsResponse>()
   const [resUpdate, runUpdate] = useFetch<boolean>()
@@ -31,22 +36,36 @@ export function FolderDetails() {
   React.useEffect(() => {
     getFolderDetails()
   }, [getFolderDetails])
-  const [textFieldValue, setTextFieldValue] = React.useState(resGetFolderDetails.data?.data.name)
+  const [textFieldValueFolderForm, setTextFieldValueFolderForm] = React.useState(
+    resGetFolderDetails.data?.data.name,
+  )
 
   const handleEditFolder = () => {
     runUpdate({
       url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/updateFolder',
       method: 'POST',
-      body: { id: numberId, name: textFieldValue },
+      body: { id: numberId, name: textFieldValueFolderForm },
       callBackOnSuccess: () => {
         getFolderDetails()
-        setOpen(false)
+        setOpenEditFolderForm(false)
+      },
+    })
+  }
+
+  const handleCreateWord = () => {
+    runUpdate({
+      url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/createWord',
+      method: 'POST',
+      body: { front: textFieldValueWordFront, back: textFieldValueWordBack, folderId: numberId },
+      callBackOnSuccess: () => {
+        getFolderDetails()
+        setOpenCreateWordForm(false)
       },
     })
   }
 
   return (
-    <>
+    <div className='relative'>
       {resGetFolderDetails.isLoading && <RoundedLoading expandToFullParent />}
       <div className='grid grid-flow-row gap-9 px-16 py-8'>
         <div>
@@ -62,29 +81,60 @@ export function FolderDetails() {
             <div className='text-4xl font-bold'>{resGetFolderDetails.data?.data.name}</div>
             <IconsAi.AiOutlineEdit
               size={30}
-              className='cursor-pointer'
+              className='cursor-pointer hover:text-system-highlight'
               onClick={() => {
-                setOpen(true)
-                setTextFieldValue(resGetFolderDetails.data?.data.name)
+                setOpenEditFolderForm(true)
+                setTextFieldValueFolderForm(resGetFolderDetails.data?.data.name)
               }}
             ></IconsAi.AiOutlineEdit>
           </div>
         </div>
-
-        <FormDialogComponent
-          open={open}
-          setOpen={setOpen}
-          textFieldValue={textFieldValue}
-          setTextFieldValue={setTextFieldValue}
+        {/* Edit Folder */}
+        <FormDialogOneTextFieldComponent
+          open={openEditFolderForm}
+          setOpen={setOpenEditFolderForm}
           handleBtnClick={handleEditFolder}
           title='Edit folder'
-          lableTextField='Title'
           nameSubmitBtn='Save'
           res={resUpdate}
+          label='Title'
+          value={textFieldValueFolderForm}
+          setValue={setTextFieldValueFolderForm}
         />
 
-        <WordsComponent words={resGetFolderDetails.data?.data.words} />
+        {/* Show words */}
+        <div className='flex flex-col gap-2'>
+          {resGetFolderDetails.data?.data.words?.map((word) => {
+            return <WordComponent key={word.id} word={word} getFolderDetails={getFolderDetails} />
+          })}
+        </div>
       </div>
-    </>
+
+      {/* Create word */}
+      <div
+        className='absolute bottom-0 right-16'
+        onClick={() => {
+          setOpenCreateWordForm(true)
+        }}
+      >
+        <ButtonComponent text='Add item' icon={<IconsFi.FiPlusCircle size={24} />} />
+      </div>
+
+      {/* Create Word */}
+      <FormDialogTwoTextFieldComponent
+        open={openCreateWordForm}
+        setOpen={setOpenCreateWordForm}
+        handleBtnClick={handleCreateWord}
+        title='Add item'
+        nameSubmitBtn='Add'
+        res={resUpdate}
+        labelOne='Front'
+        valueOne={textFieldValueWordFront}
+        setValueOne={setTextFieldValueWordFront}
+        labelTwo='Back'
+        valueTwo={textFieldValueWordBack}
+        setValueTwo={setTextFieldValueWordBack}
+      />
+    </div>
   )
 }

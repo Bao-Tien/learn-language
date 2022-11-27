@@ -8,7 +8,7 @@ import { VideosScreen } from './VideosScreen'
 import { GlobalScreen } from './GlobalScreen'
 import { VideoItemScreen } from './VideoItemScreen'
 import { FolderDetails } from './FolderDetails'
-import { SetsScreen } from './SetsScreen'
+import { LoginScreen } from './LoginScreen'
 
 interface IAppRoute {
   path: string
@@ -26,6 +26,7 @@ const routes: IAppRoute[] = [
   { path: '/global', screen: <GlobalScreen />, layout: MainLayout },
   { path: '/watch', screen: <VideoItemScreen /> },
   { path: '/your-library/:id', screen: <FolderDetails />, layout: MainLayout },
+  { path: '/login', screen: <LoginScreen /> },
 ]
 
 export function AppRoutes() {

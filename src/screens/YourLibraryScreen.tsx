@@ -5,6 +5,8 @@ import { useFetch } from '~root/hooks/useFetch'
 import React from 'react'
 import { FormDialogComponent } from '~root/components/FormDialog'
 import RoundedLoading from '~root/components/RoundedLoading/RoundedLoading'
+import TextField from '@mui/material/TextField'
+import { TextFieldComponent } from '~root/components/TextField'
 
 export interface IWord {
   id: 'number'
@@ -39,7 +41,7 @@ export function YourLibraryScreen() {
     getAllFolders()
   }, [getAllFolders])
 
-  const handleCreateBtnClick = () => {
+  const handleCreateFolderBtnClick = () => {
     runCreate({
       url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/createFolder',
       method: 'POST',
@@ -56,17 +58,22 @@ export function YourLibraryScreen() {
       <div className='flex justify-end' onClick={() => setOpen(true)}>
         <ButtonComponent icon={<Icons.HiOutlineFolderAdd size={24} />} text='Create folder' />
       </div>
+
       <FormDialogComponent
         open={open}
         setOpen={setOpen}
-        textFieldValue={textFieldValue}
-        setTextFieldValue={setTextFieldValue}
-        handleBtnClick={handleCreateBtnClick}
+        handleBtnClick={handleCreateFolderBtnClick}
         title='Create a new folder'
-        lableTextField='Enter a title'
-        nameSubmitBtn='Create Folder'
+        nameSubmitBtn='Create Folders'
         res={resCreate}
-      />
+      >
+        <TextFieldComponent
+          label='Enter a title'
+          value={textFieldValue}
+          setValue={setTextFieldValue}
+        />
+      </FormDialogComponent>
+
       {resGetFolders.isLoading && <RoundedLoading expandToFullParent />}
       <div className='grid lg:grid-cols-3 gap-5 md:grid-cols-2 ms:grid-cols-1'>
         {resGetFolders.data?.allFolders.map((folder) => {

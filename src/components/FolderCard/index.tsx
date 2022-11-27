@@ -14,7 +14,6 @@ export function FolderCardComponent(props: IFolderCardComponentProps) {
   const [res, run] = useFetch<boolean>()
 
   const handleDeleteFolder = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
-    console.log(123)
     event.preventDefault()
     run({
       url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/deleteFolder',
