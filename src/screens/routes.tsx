@@ -9,6 +9,7 @@ import { GlobalScreen } from './GlobalScreen'
 import { VideoItemScreen } from './VideoItemScreen'
 import { FolderDetails } from './FolderDetails'
 import { LoginScreen } from './LoginScreen'
+import { SignUpScreen } from './SignUpScreen'
 
 interface IAppRoute {
   path: string
@@ -27,6 +28,7 @@ const routes: IAppRoute[] = [
   { path: '/watch', screen: <VideoItemScreen /> },
   { path: '/your-library/:id', screen: <FolderDetails />, layout: MainLayout },
   { path: '/login', screen: <LoginScreen /> },
+  { path: '/sign-up', screen: <SignUpScreen /> },
 ]
 
 export function AppRoutes() {

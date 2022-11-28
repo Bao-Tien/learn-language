@@ -12,10 +12,13 @@ module.exports = {
         'system-caption': '#ffffff',
         'system-disable': '#d9dde8',
         'system-disable-light': '#d9dde8',
+        'system-login': '#1876d3',
       },
       backgroundImage: {
         'system-theme-img':
           'url(https://doan2-20220925-dev-imagebucket-jivszewnyq8u.s3.ap-southeast-1.amazonaws.com/lisa.jpeg)',
+        'system-login-img':
+          'url(https://doan2-20220925-dev-imagebucket-jivszewnyq8u.s3.ap-southeast-1.amazonaws.com/cat.png)',
       },
       backgroundColor: {
         'system-shaded': 'rgba(0,0,0,0.05)',
@@ -26,6 +29,7 @@ module.exports = {
         'system-videoItem': '#373131',
         'system-card': 'var(--card-system-background)',
         'system-highlight': 'var(--text-system-highlight)',
+        'system-login': '#f08517',
       },
       borderRadius: {
         'system-default': '0.5rem',
