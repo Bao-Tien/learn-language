@@ -28,7 +28,7 @@ export function WordComponent(props: IWordComponentProps) {
     })
   }
   const handleUpdateWord = () => {
-    runDeleteWord({
+    runUpdateWord({
       url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/updateWord',
       method: 'POST',
       body: { id: props.word?.id, front: textFieldValueWordFront, back: textFieldValueWordBack },
@@ -39,7 +39,7 @@ export function WordComponent(props: IWordComponentProps) {
     })
   }
   return (
-    <div className='flex lg:w-3/4 h-14 bg-system-card rounded-sm shadow-system-card p-4'>
+    <div className='flex lg:w-3/4 h-full bg-system-card rounded-sm shadow-system-card p-4'>
       <div className='flex-1 flex'>
         <div className='w-2/5 border-r-2 border-system-card'>{props.word?.front}</div>
         <div className='w-3/5 pl-8'>{props.word?.back}</div>

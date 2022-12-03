@@ -16,7 +16,6 @@ export function TextFieldComponent(props: ITextFieldComponentProps) {
 
   return (
     <TextField
-      autoFocus
       margin='dense'
       id='name'
       label={props.label}

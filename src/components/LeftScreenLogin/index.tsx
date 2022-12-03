@@ -7,9 +7,10 @@ export function LeftScreenLoginComponent() {
         <div>
           This is a place where you can make your own creativity, self-study in your own way.
         </div>
-        <div>Let's study together ❤️❤️❤️</div>
+        <div>Let us help you do it ❤️❤️❤️</div>
         <div className='text-sm italic'>
-          "Success isn’t final, failure isn’t fatal: it’s the courage to continue that counts"
+          Success isn&apos;t final, failure isn&apos;t fatal: it&apos;s the courage to continue that
+          counts
         </div>
       </div>
     </div>

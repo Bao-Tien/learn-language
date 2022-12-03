@@ -5,7 +5,6 @@ import { useFetch } from '~root/hooks/useFetch'
 import React from 'react'
 import { FormDialogComponent } from '~root/components/FormDialog'
 import RoundedLoading from '~root/components/RoundedLoading/RoundedLoading'
-import TextField from '@mui/material/TextField'
 import { TextFieldComponent } from '~root/components/TextField'
 
 export interface IWord {
@@ -55,7 +54,13 @@ export function YourLibraryScreen() {
 
   return (
     <div className='px-16 py-8 flex flex-col gap-3'>
-      <div className='flex justify-end' onClick={() => setOpen(true)}>
+      <div
+        className='flex justify-end'
+        onClick={() => {
+          setOpen(true)
+          setTextFieldValue('')
+        }}
+      >
         <ButtonComponent icon={<Icons.HiOutlineFolderAdd size={24} />} text='Create folder' />
       </div>
 

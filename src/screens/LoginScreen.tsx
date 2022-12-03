@@ -13,7 +13,7 @@ export function LoginScreen() {
           <div className='text-center text-system-placeholder mb-5'>_________or_________</div>
           <Link to='/sign-up'>
             <div className='cursor-pointer hover:text-system-login'>
-              Sign up here if you don't have account
+              Sign up here if you don&apos;t have account
             </div>
           </Link>
         </div>

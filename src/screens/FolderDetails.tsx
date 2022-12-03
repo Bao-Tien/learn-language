@@ -31,7 +31,7 @@ export function FolderDetails() {
       method: 'POST',
       body: { folderId: numberId },
     })
-  }, [runGetFolderDetails])
+  }, [runGetFolderDetails, numberId])
 
   React.useEffect(() => {
     getFolderDetails()
@@ -65,9 +65,9 @@ export function FolderDetails() {
   }
 
   return (
-    <div className='relative'>
+    <div className=''>
       {resGetFolderDetails.isLoading && <RoundedLoading expandToFullParent />}
-      <div className='grid grid-flow-row gap-9 px-16 py-8'>
+      <div className='grid grid-flow-row gap-9 px-16 py-8 relative'>
         <div>
           <div className='text-sm flex gap-10'>
             <div className='font-semibold'>19 items</div>
@@ -112,15 +112,16 @@ export function FolderDetails() {
 
       {/* Create word */}
       <div
-        className='absolute bottom-0 right-16'
+        className='absolute bottom-16 right-16'
         onClick={() => {
           setOpenCreateWordForm(true)
+          setTextFieldValueWordBack('')
+          setTextFieldValueWordFront('')
         }}
       >
         <ButtonComponent text='Add item' icon={<IconsFi.FiPlusCircle size={24} />} />
       </div>
 
-      {/* Create Word */}
       <FormDialogTwoTextFieldComponent
         open={openCreateWordForm}
         setOpen={setOpenCreateWordForm}
