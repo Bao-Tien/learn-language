@@ -9,7 +9,9 @@ type TUseFetchReturn<T> = [
   (params: {
     url: string
     method: TRequestMethod
-    body?: object
+    body?: any
+    header?: HeadersInit
+    notStringifyBody?: boolean
     callBackOnSuccess?: (data: T) => any
   }) => void,
 ]
@@ -23,17 +25,18 @@ export function useFetch<ResponseType = any>(): TUseFetchReturn<ResponseType> {
     (params: {
       url: string
       method: TRequestMethod
-      body?: object
+      body?: any
+      header?: HeadersInit
+      notStringifyBody?: boolean
       callBackOnSuccess?: (data: ResponseType) => any
     }) => {
       setIsLoading(true)
       fetch(params.url, {
         method: params.method,
-        headers: {
-          Accept: 'application/json',
+        headers: params.header ?? {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(params.body),
+        body: params.notStringifyBody ? params.body : JSON.stringify(params.body),
       })
         .then((res) => res.json())
         .then((res) => {

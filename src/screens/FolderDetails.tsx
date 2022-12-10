@@ -9,6 +9,7 @@ import RoundedLoading from '~root/components/RoundedLoading/RoundedLoading'
 import { ButtonComponent } from '~root/components/Button'
 import { FormDialogOneTextFieldComponent } from '~root/components/FormDialogOneTextField'
 import { FormDialogTwoTextFieldComponent } from '~root/components/FormDialogTwoTextField'
+import { FlipCardComponent } from '~root/components/FlipCard'
 
 interface IGetFolderDetailsResponse {
   data: IFolder
@@ -19,8 +20,6 @@ export function FolderDetails() {
   const numberId = Number(id)
   const [openEditFolderForm, setOpenEditFolderForm] = React.useState(false)
   const [openCreateWordForm, setOpenCreateWordForm] = React.useState(false)
-  const [textFieldValueWordFront, setTextFieldValueWordFront] = React.useState('')
-  const [textFieldValueWordBack, setTextFieldValueWordBack] = React.useState('')
 
   const [resGetFolderDetails, runGetFolderDetails] = useFetch<IGetFolderDetailsResponse>()
   const [resUpdate, runUpdate] = useFetch<boolean>()
@@ -52,20 +51,8 @@ export function FolderDetails() {
     })
   }
 
-  const handleCreateWord = () => {
-    runUpdate({
-      url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/createWord',
-      method: 'POST',
-      body: { front: textFieldValueWordFront, back: textFieldValueWordBack, folderId: numberId },
-      callBackOnSuccess: () => {
-        getFolderDetails()
-        setOpenCreateWordForm(false)
-      },
-    })
-  }
-
   return (
-    <div className=''>
+    <div>
       {resGetFolderDetails.isLoading && <RoundedLoading expandToFullParent />}
       <div className='grid grid-flow-row gap-9 px-16 py-8 relative'>
         <div>
@@ -102,6 +89,9 @@ export function FolderDetails() {
           setValue={setTextFieldValueFolderForm}
         />
 
+        {/* Flip card */}
+        <FlipCardComponent />
+
         {/* Show words */}
         <div className='flex flex-col gap-2'>
           {resGetFolderDetails.data?.data.words?.map((word) => {
@@ -115,8 +105,6 @@ export function FolderDetails() {
         className='absolute bottom-16 right-16'
         onClick={() => {
           setOpenCreateWordForm(true)
-          setTextFieldValueWordBack('')
-          setTextFieldValueWordFront('')
         }}
       >
         <ButtonComponent text='Add item' icon={<IconsFi.FiPlusCircle size={24} />} />
@@ -125,16 +113,11 @@ export function FolderDetails() {
       <FormDialogTwoTextFieldComponent
         open={openCreateWordForm}
         setOpen={setOpenCreateWordForm}
-        handleBtnClick={handleCreateWord}
         title='Add item'
         nameSubmitBtn='Add'
-        res={resUpdate}
-        labelOne='Front'
-        valueOne={textFieldValueWordFront}
-        setValueOne={setTextFieldValueWordFront}
-        labelTwo='Back'
-        valueTwo={textFieldValueWordBack}
-        setValueTwo={setTextFieldValueWordBack}
+        formType='create-word'
+        getFolderDetails={getFolderDetails}
+        folderId={numberId}
       />
     </div>
   )

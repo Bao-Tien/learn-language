@@ -8,10 +8,12 @@ import RoundedLoading from '~root/components/RoundedLoading/RoundedLoading'
 import { TextFieldComponent } from '~root/components/TextField'
 
 export interface IWord {
-  id: 'number'
-  front: 'string'
-  back: 'string'
-  folderId: 'number'
+  id: number
+  front: string
+  back: string
+  folderId: number
+  frontImageUrl: string
+  backImageUrl: string
 }
 export interface IFolder {
   id: number

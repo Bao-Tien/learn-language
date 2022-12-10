@@ -30,6 +30,7 @@ module.exports = {
         'system-card': 'var(--card-system-background)',
         'system-highlight': 'var(--text-system-highlight)',
         'system-login': '#f08517',
+        'system-line': '#CC3373',
       },
       borderRadius: {
         'system-default': '0.5rem',

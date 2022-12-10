@@ -11,11 +11,9 @@ interface IWordComponentProps {
 }
 
 export function WordComponent(props: IWordComponentProps) {
-  const [openEditWordForm, setOpenEditWordForm] = React.useState(false)
   const [resDeleteWord, runDeleteWord] = useFetch<boolean>()
-  const [resUpdateWord, runUpdateWord] = useFetch<boolean>()
-  const [textFieldValueWordFront, setTextFieldValueWordFront] = React.useState('')
-  const [textFieldValueWordBack, setTextFieldValueWordBack] = React.useState('')
+  const [openEditWordForm, setOpenEditWordForm] = React.useState(false)
+
   const handleDeleteWord = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
     event.preventDefault()
     runDeleteWord({
@@ -27,22 +25,26 @@ export function WordComponent(props: IWordComponentProps) {
       },
     })
   }
-  const handleUpdateWord = () => {
-    runUpdateWord({
-      url: 'https://vqqzt9nxi7.execute-api.ap-southeast-1.amazonaws.com/dev/updateWord',
-      method: 'POST',
-      body: { id: props.word?.id, front: textFieldValueWordFront, back: textFieldValueWordBack },
-      callBackOnSuccess: () => {
-        props.getFolderDetails()
-        setOpenEditWordForm(false)
-      },
-    })
-  }
+
   return (
     <div className='flex lg:w-3/4 h-full bg-system-card rounded-sm shadow-system-card p-4'>
       <div className='flex-1 flex'>
-        <div className='w-2/5 border-r-2 border-system-card'>{props.word?.front}</div>
-        <div className='w-3/5 pl-8'>{props.word?.back}</div>
+        <div className='w-2/5 border-r-2 border-system-card'>
+          <div>{props.word?.front}</div>
+          {props.word.frontImageUrl && (
+            <div>
+              <img src={props.word.frontImageUrl} className='max-h-[10rem]' />
+            </div>
+          )}
+        </div>
+        <div className='w-3/5 pl-8'>
+          <div>{props.word?.back}</div>
+          {props.word.backImageUrl && (
+            <div>
+              <img src={props.word.backImageUrl} className='max-h-[10rem]' />
+            </div>
+          )}
+        </div>
       </div>
       {/* Edit Word */}
       <div className='flex gap-4'>
@@ -50,32 +52,22 @@ export function WordComponent(props: IWordComponentProps) {
           size={24}
           className='cursor-pointer hover:text-system-highlight'
         ></Icons.AiOutlineSound>
-        {resUpdateWord.isLoading ? (
-          <RoundedLoading />
-        ) : (
-          <Icons.AiOutlineEdit
-            size={24}
-            className='cursor-pointer hover:text-system-highlight'
-            onClick={() => {
-              setOpenEditWordForm(true)
-              setTextFieldValueWordFront(props.word.front)
-              setTextFieldValueWordBack(props.word.back)
-            }}
-          ></Icons.AiOutlineEdit>
-        )}
+        <Icons.AiOutlineEdit
+          size={24}
+          className='cursor-pointer hover:text-system-highlight'
+          onClick={() => {
+            setOpenEditWordForm(true)
+          }}
+        ></Icons.AiOutlineEdit>
+
         <FormDialogTwoTextFieldComponent
           open={openEditWordForm}
           setOpen={setOpenEditWordForm}
-          handleBtnClick={handleUpdateWord}
           title='Edit item'
           nameSubmitBtn='Save'
-          res={resUpdateWord}
-          labelOne='Front'
-          valueOne={textFieldValueWordFront}
-          setValueOne={setTextFieldValueWordFront}
-          labelTwo='Back'
-          valueTwo={textFieldValueWordBack}
-          setValueTwo={setTextFieldValueWordBack}
+          formType='edit-word'
+          getFolderDetails={props.getFolderDetails}
+          word={props.word}
         />
         {/* Delete Word */}
         {resDeleteWord.isLoading ? (

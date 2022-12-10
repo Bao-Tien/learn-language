@@ -17,22 +17,7 @@ const SSpan_IconContainer = styled.span`
 
 const MENU_ITEMS: IMenuItem[] = [
   {
-    icon: <Icons.HiOutlineMusicNote size={24} />,
-    label: 'My music',
-    path: '/music',
-  },
-  {
-    icon: <Icons.HiOutlineSparkles size={24} />,
-    label: 'Explore',
-    path: '/explore',
-  },
-  {
-    icon: <Icons.HiOutlineChartSquareBar size={24} />,
-    label: 'Charts',
-    path: '/charts',
-  },
-  {
-    icon: <Icons.HiOutlineStar size={24} />,
+    icon: <Icons.HiOutlineBookOpen size={24} />,
     label: 'Your Library',
     path: '/your-library',
   },
@@ -42,9 +27,14 @@ const MENU_ITEMS: IMenuItem[] = [
     path: '/videos',
   },
   {
-    icon: <Icons.HiOutlineGlobe size={24} />,
-    label: 'Global',
-    path: '/global',
+    icon: <Icons.HiOutlineNewspaper size={24} />,
+    label: 'News',
+    path: '/news',
+  },
+  {
+    icon: <Icons.HiOutlineBookmark size={24} />,
+    label: 'Dictionary',
+    path: '/dictionary',
   },
 ]
 
