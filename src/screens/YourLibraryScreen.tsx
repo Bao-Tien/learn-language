@@ -55,7 +55,7 @@ export function YourLibraryScreen() {
   }
 
   return (
-    <div className='px-16 py-8 flex flex-col gap-3'>
+    <div className='px-16 py-8 flex flex-col gap-8'>
       <div
         className='flex justify-end'
         onClick={() => {
@@ -81,7 +81,11 @@ export function YourLibraryScreen() {
         />
       </FormDialogComponent>
 
-      {resGetFolders.isLoading && <RoundedLoading expandToFullParent />}
+      {resGetFolders.isLoading && (
+        <div className='pt-10'>
+          <RoundedLoading expandToFullParent />
+        </div>
+      )}
       <div className='grid lg:grid-cols-3 gap-5 md:grid-cols-2 ms:grid-cols-1'>
         {resGetFolders.data?.allFolders.map((folder) => {
           return (

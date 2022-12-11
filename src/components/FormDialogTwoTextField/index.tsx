@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react'
+import React from 'react'
 import { useFetch } from '~root/hooks/useFetch'
 import { FormDialogComponent } from '../FormDialog'
 import { TextFieldComponent } from '../TextField'
@@ -28,7 +28,7 @@ interface IUploadedUrls {
 }
 
 export function FormDialogTwoTextFieldComponent(props: IFormDialogTwoTextFieldComponentProps) {
-  const [resGetUploadUrl, runGetUploadUrl] = useFetch<IGetUploadUrlResponse>()
+  const [, runGetUploadUrl] = useFetch<IGetUploadUrlResponse>()
   const [uploadedUrls, setUploadedUrls] = React.useState<IUploadedUrls>({
     frontImageUrl: undefined,
     backImageUrl: undefined,
@@ -160,7 +160,7 @@ export function FormDialogTwoTextFieldComponent(props: IFormDialogTwoTextFieldCo
       }
       setUploadedUrls({ frontImageUrl: undefined, backImageUrl: undefined })
     }
-  }, [props.open, props.formType])
+  }, [props.open, props.formType, props.word])
 
   const frontImageUrl = uploadedUrls.frontImageUrl ?? props.word?.frontImageUrl
   const backImageUrl = uploadedUrls.backImageUrl ?? props.word?.backImageUrl
@@ -194,7 +194,7 @@ export function FormDialogTwoTextFieldComponent(props: IFormDialogTwoTextFieldCo
         </div>
         <div className='col-span-1 flex justify-center relative'>
           {frontImageUrl && !isUploadingFrontImage && (
-            <img src={frontImageUrl} className='h-[8rem]' />
+            <img src={frontImageUrl} className='h-[8rem]' alt='frontImageUrl' />
           )}
           {isUploadingFrontImage && <RoundedLoading expandToFullParent />}
         </div>
@@ -218,7 +218,9 @@ export function FormDialogTwoTextFieldComponent(props: IFormDialogTwoTextFieldCo
           />
         </div>
         <div className='col-span-1 flex justify-center relative'>
-          {backImageUrl && !isUploadingBackImage && <img src={backImageUrl} className='h-[8rem]' />}
+          {backImageUrl && !isUploadingBackImage && (
+            <img src={backImageUrl} className='h-[8rem]' alt='backImageUrl' />
+          )}
           {isUploadingBackImage && <RoundedLoading expandToFullParent />}
         </div>
       </div>

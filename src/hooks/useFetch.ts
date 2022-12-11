@@ -13,6 +13,8 @@ type TUseFetchReturn<T> = [
     header?: HeadersInit
     notStringifyBody?: boolean
     callBackOnSuccess?: (data: T) => any
+    callBackOnFail?: (error: any) => any
+    callBackOnFinish?: () => any
   }) => void,
 ]
 
@@ -29,6 +31,8 @@ export function useFetch<ResponseType = any>(): TUseFetchReturn<ResponseType> {
       header?: HeadersInit
       notStringifyBody?: boolean
       callBackOnSuccess?: (data: ResponseType) => any
+      callBackOnFail?: (error: any) => any
+      callBackOnFinish?: () => any
     }) => {
       setIsLoading(true)
       fetch(params.url, {
@@ -47,10 +51,15 @@ export function useFetch<ResponseType = any>(): TUseFetchReturn<ResponseType> {
         })
         .catch((err) => {
           setError(err)
-          console.log(err)
+          if (typeof params.callBackOnFail === 'function') {
+            params.callBackOnFail(err)
+          }
         })
         .finally(() => {
           setIsLoading(false)
+          if (typeof params.callBackOnFinish === 'function') {
+            params.callBackOnFinish()
+          }
         })
     },
     [setIsLoading, setData, setError],
