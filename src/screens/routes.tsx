@@ -9,6 +9,9 @@ import { SignUpScreen } from './SignUpScreen'
 import { DictionaryScreen } from './DictionaryScreen'
 import { NewsScreen } from './NewsScreen'
 import { NewDetailsScreen } from './NewDetailsScreen'
+import React from 'react'
+import AuthContext from '~root/contexts/_AuthContext'
+import { HomeScreen } from './HomeScreen'
 
 interface IAppRoute {
   path: string
@@ -18,7 +21,8 @@ interface IAppRoute {
 }
 
 const routes: IAppRoute[] = [
-  { path: '/your-library', screen: <YourLibraryScreen />, layout: MainLayout },
+  { path: '/', screen: <HomeScreen />, layout: MainLayout },
+  { path: '/your-library', screen: <YourLibraryScreen />, layout: MainLayout, requiredLogin: true },
   { path: '/videos', screen: <VideosScreen />, layout: MainLayout },
   { path: '/watch', screen: <VideoItemScreen /> },
   { path: '/your-library/:id', screen: <FolderDetails />, layout: MainLayout },
@@ -30,11 +34,11 @@ const routes: IAppRoute[] = [
 ]
 
 export function AppRoutes() {
+  const { isLoggedIn } = React.useContext(AuthContext)
   return (
     <Routes>
       {routes.map((route) => {
-        const isLogin = false
-        if (route.requiredLogin && isLogin === false) {
+        if (route.requiredLogin && isLoggedIn === false) {
           // Redirect to Login page
           return (
             <Route key={route.path} path='*' element={<Navigate key={route.path} to='/login' />} />

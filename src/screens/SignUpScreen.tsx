@@ -8,7 +8,7 @@ export function SignUpScreen() {
       <LeftScreenLoginComponent />
       <div className='flex justify-center items-center flex-col px-48'>
         <div className='text-lg text-system-login'>BEnglish</div>
-        <FormSignInAndUpComponent labelBtn='Sign up' />
+        <FormSignInAndUpComponent labelBtn='Sign up' type='signup' />
         <div>
           <div className='text-center text-system-placeholder mb-5'>_________or_________</div>
           <Link to='/login'>

@@ -1,14 +1,14 @@
 import { BrowserRouter } from 'react-router-dom'
-import SearchInputContextProvider from './contexts/SearchInputContext'
+import AppContextProvider from './contexts'
 import { AppRoutes } from './screens/routes'
 
 function App() {
   return (
     <div className='fixed'>
       <BrowserRouter>
-        <SearchInputContextProvider>
+        <AppContextProvider>
           <AppRoutes />
-        </SearchInputContextProvider>
+        </AppContextProvider>
       </BrowserRouter>
     </div>
   )
